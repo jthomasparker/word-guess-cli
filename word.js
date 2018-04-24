@@ -7,6 +7,10 @@ function Word(){
         for(i in word){
             var letter = new Letter(word[i]);
             this.letters.push(letter)
+            if(letter.character == ' '){
+                letter.guessed = true;
+                letter.character = '  '
+            }
         }
     }, 
 
@@ -15,9 +19,13 @@ function Word(){
     },
 
     this.newGuess = function(userGuess){
+        var correct = false;
         this.letters.forEach(letter => {
-            letter.processGuess(userGuess)
-        });        
+            if(letter.processGuess(userGuess)){
+                correct = true;
+            }
+        });
+        return correct        
     }
 }
 

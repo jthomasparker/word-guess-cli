@@ -2,6 +2,7 @@
 
 function Letter(character){
     this.character = character,
+    this.characterUpper = this.character.toUpperCase()
     this.guessed = false,
 
     this.toString = function(){
@@ -13,9 +14,9 @@ function Letter(character){
     }, 
 
     this.processGuess = function(userGuess){
-        if(userGuess === this.character){
+        if(userGuess === this.characterUpper){
             this.guessed = true;
-            console.log("Correct!")
+            return true;
         }// else {
           //  this.guessed = false;
        // }
