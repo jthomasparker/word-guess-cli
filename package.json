@@ -1,0 +1,22 @@
+{
+  "name": "word-guess-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jthomasparker/word-guess-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jthomasparker/word-guess-cli/issues"
+  },
+  "homepage": "https://github.com/jthomasparker/word-guess-cli#readme",
+  "dependencies": {
+    "inquirer": "^5.2.0"
+  }
+}
