@@ -12,7 +12,7 @@ function chooseMovie(){
     return movies[Math.floor(Math.random() * movies.length)]
 }
 
-
+// starts a new game
 function newGame(){
     console.log(newGameDecoration())
     var word = new Word()
@@ -22,6 +22,7 @@ function newGame(){
     playGame(word, 10)
 }
 
+// main gameplay logic
 function playGame(word, guessCount){
     if(guessCount > 0){
     inquirer.prompt([
@@ -31,21 +32,23 @@ function playGame(word, guessCount){
         }
         ]).then(function(userGuess){
             userGuess.letter = userGuess.letter.toUpperCase()
+            // check to see if the letter has been guessed or not
             if(userGuesses.indexOf(userGuess.letter) === -1){
                 userGuesses.push(userGuess.letter)
+                // process the guess
                 word.newGuess(userGuess.letter)
                 word.displayWord()
                 if(word.newGuess(userGuess.letter)){
                     console.log("\nCorrect!")
                 } else {
                     guessCount--
-                    console.log("\nIncorrect!\nGuesses Remaining:" + guessCount + "\n")
+                    console.log("\nIncorrect!\nGuesses Remaining: " + guessCount + "\n")
                 }
             } else {
                 word.displayWord()
                 console.log("\nYou already guessed that!\nTry again!")
             }
-
+            // check to see if the user has guessed the complete word
             if(!gameStatus(word)){
             playGame(word, guessCount)
             } else {
@@ -56,6 +59,7 @@ function playGame(word, guessCount){
             }
         })
     } else {
+        // set all the letters to true so they'll display the answer
         word.letters.forEach(letter => {
             letter.guessed = true;
         });
@@ -66,6 +70,7 @@ function playGame(word, guessCount){
     }
 }
 
+// see if they want to play again
 function endGame(){
     inquirer.prompt([
         {
@@ -82,7 +87,7 @@ function endGame(){
     })
 }
 
-
+// just for fun
 function newGameDecoration(){
     decoration =  "\n |********************|\n"
     decoration += " |********************|\n"
@@ -92,8 +97,9 @@ function newGameDecoration(){
     decoration += " |********************|\n"
     decoration += " **********************\n"
     return decoration
-}
+};
 
+// checks to see if the user has guessed all the letters in the word
 function gameStatus(word){
     var userWins = true;
     for(i in word.letters){
@@ -102,6 +108,6 @@ function gameStatus(word){
         }
     }
     return userWins;
-}
+};
 
 newGame()
